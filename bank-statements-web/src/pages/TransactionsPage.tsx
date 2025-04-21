@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Transaction } from '../types/transaction';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
@@ -10,7 +10,10 @@ export default function TransactionsPage() {
   useEffect(() => {
     fetch(`${API_URL}/transactions/`)
       .then(res => res.json())
-      .then(setTransactions)
+      .then(data => {
+        console.log('Fetched transactions:', data);
+        setTransactions(data);
+      })
       .finally(() => setLoading(false));
   }, []);
 

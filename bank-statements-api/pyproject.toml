@@ -2,19 +2,27 @@
 name = "bank-statements-api"
 version = "0.1.0"
 description = "FastAPI backend for Bank Statements Steel Thread"
-authors = ["Your Name <your@email.com>"]
+authors = [
+  { name = "Your Name", email = "your@email.com" }
+]
 readme = "README.md"
 requires-python = ">=3.10"
 
+[tool.poetry]
+packages = [
+  { include = "bank_statements_api" }
+]
+
 [tool.poetry.dependencies]
 fastapi = "^0.110.0"
-udantic = "^1.4.0"
+pydantic = "^2.11.3"
 asyncpg = "^0.29.0"
 SQLAlchemy = "^2.0.29"
 psycopg = {extras = ["binary"], version = "^3.1.18"}
 python-dotenv = "^1.0.1"
+uvicorn = "^0.34.2"
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.dev.dependencies]
 pytest = "^8.1.1"
 httpx = "^0.27.0"
 pytest-asyncio = "^0.23.6"

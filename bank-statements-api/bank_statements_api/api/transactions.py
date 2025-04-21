@@ -13,6 +13,11 @@ class TransactionCreate(BaseModel):
     description: str
     amount: Decimal
 
+    class Config:
+        json_encoders = {
+            Decimal: float
+        }
+
 class Transaction(TransactionCreate):
     id: UUID
 
