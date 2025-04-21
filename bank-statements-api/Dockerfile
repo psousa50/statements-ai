@@ -13,6 +13,7 @@ RUN apt-get update \
 
 # Copy only dependency files first for better Docker caching
 COPY pyproject.toml poetry.lock ./
+COPY README.md ./
 RUN poetry install --no-interaction --no-ansi
 
 # Copy the rest of the source code
