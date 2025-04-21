@@ -11,13 +11,11 @@ RUN apt-get update \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy only dependency files first for better Docker caching
+# Copy dependency files and source code before poetry install
 COPY pyproject.toml poetry.lock ./
 COPY README.md ./
-RUN poetry install --no-interaction --no-ansi
-
-# Copy the rest of the source code
 COPY bank_statements_api ./bank_statements_api
+RUN poetry install --no-interaction --no-ansi
 
 EXPOSE 10000
 CMD ["uvicorn", "bank_statements_api.main:app", "--host", "0.0.0.0", "--port", "10000"]
