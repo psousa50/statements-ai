@@ -1,6 +1,8 @@
 #!/bin/bash
 
-curl -X POST http://localhost:8000/transactions/ \
+API_URL=${1:-http://localhost:8000}
+
+curl -X POST ${API_URL}/transactions/ \
   -H "Content-Type: application/json" \
   -d '{
     "date": "2024-04-21",
