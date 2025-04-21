@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+env/
+.venv/
+
+# Node
+node_modules/
+build/
+dist/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# Test/coverage
+.coverage
+htmlcov/
+coverage.xml
+
+# Migrations
+alembic/versions/
+
+# Misc
+*.log
+
+# Environment variables (do NOT commit real secrets)
+.env
+.env.*
+!*.env.example

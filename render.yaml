@@ -1,0 +1,46 @@
+services:
+  - type: web
+    name: bank-statements-api
+    env: python
+    plan: free
+    buildCommand: |
+      cd bank-statements-api
+      pip install --upgrade pip
+      pip install poetry
+      poetry install
+    startCommand: |
+      cd bank-statements-api
+      poetry run uvicorn src.main:app --host 0.0.0.0 --port 10000
+    envVars:
+      - key: ENV
+        sync: false
+      - key: DATABASE_URL
+        sync: false
+    autoDeploy: true
+    healthCheckPath: /health
+    region: oregon
+
+  - type: web
+    name: bank-statements-web
+    env: static
+    plan: free
+    buildCommand: |
+      cd bank-statements-web
+      npm install
+      npm run build
+    staticPublishPath: bank-statements-web/dist
+    envVars:
+      - key: VITE_API_URL
+        sync: false
+      - key: ENV
+        sync: false
+    autoDeploy: true
+    region: oregon
+
+  - type: postgres
+    name: bank-statements-db
+    plan: free
+    region: oregon
+    databaseName: bank_statements
+    user: bank_statements_user
+    ipAllowList: []
