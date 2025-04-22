@@ -37,8 +37,8 @@ services:
     autoDeploy: true
     region: oregon
 
-  - type: postgres
-    name: bank-statements-db
+databases:
+  - name: bank-statements-db
     plan: free
     region: oregon
     databaseName: bank_statements
