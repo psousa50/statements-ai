@@ -2,6 +2,7 @@ services:
   - type: web
     name: bank-statements-api
     env: python
+    plan: free
     buildCommand: |
       cd bank-statements-api
       pip install --upgrade pip
