@@ -1,6 +1,6 @@
-from fastapi import APIRouter, HTTPException, status, Depends
-from pydantic import BaseModel, Field
-from uuid import UUID, uuid4
+from fastapi import APIRouter, status, Depends
+from pydantic import BaseModel, ConfigDict, field_serializer
+from uuid import UUID
 from datetime import date
 from decimal import Decimal
 from typing import List
@@ -18,10 +18,11 @@ class TransactionCreate(BaseModel):
     description: str
     amount: Decimal
 
-    class Config:
-        json_encoders = {
-            Decimal: float
-        }
+    @field_serializer('amount')
+    def serialize_amount(self, v):
+        return float(v)
+
+    model_config = ConfigDict()
 
 class Transaction(TransactionCreate):
     id: UUID

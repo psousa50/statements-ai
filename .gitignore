@@ -30,7 +30,3 @@ alembic/versions/
 # Misc
 *.log
 
-# Environment variables (do NOT commit real secrets)
-.env
-.env.*
-!*.env.example

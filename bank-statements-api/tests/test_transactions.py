@@ -1,6 +1,6 @@
 import pytest
 from fastapi.testclient import TestClient
-from src.main import app
+from bank_statements_api.main import app
 
 client = TestClient(app)
 
@@ -9,13 +9,13 @@ def test_create_and_list_transactions():
     payload = {
         "date": "2024-01-01",
         "description": "Test Transaction",
-        "amount": "123.45"
+        "amount": 123.45
     }
     resp = client.post("/transactions/", json=payload)
     assert resp.status_code == 201
     data = resp.json()
     assert data["description"] == "Test Transaction"
-    assert data["amount"] == "123.45"
+    assert data["amount"] == 123.45
     assert "id" in data
 
     # List transactions

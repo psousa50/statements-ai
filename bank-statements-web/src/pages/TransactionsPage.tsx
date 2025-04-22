@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Transaction } from '../types/transaction';
-
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+import { API_URL } from '../config/api';
 
 export default function TransactionsPage() {
   const [transactions, setTransactions] = useState<Transaction[]>([]);

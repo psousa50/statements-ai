@@ -15,8 +15,8 @@ services:
     command: uvicorn bank_statements_api.main:app --host 0.0.0.0 --port 10000
     depends_on:
       - db
-    environment:
-      DATABASE_URL: postgresql+asyncpg://postgres:postgres@db:5432/statements
+    env_file:
+      - .env
     ports:
       - "10000:10000"
     volumes:
