@@ -35,12 +35,10 @@ services:
       - key: ENV
         sync: false
     autoDeploy: true
-    region: oregon
 
 databases:
   - name: bank-statements-db
     plan: free
-    region: oregon
     databaseName: bank_statements
     user: bank_statements_user
     ipAllowList: []
