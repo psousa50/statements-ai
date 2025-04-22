@@ -1,20 +1,20 @@
-import { useEffect, useState } from 'react';
-import { Transaction } from '../types/transaction';
-import { API_URL } from '../config/api';
+import { useEffect, useState } from 'react'
+import { Transaction } from '../types/transaction'
+import { API_URL } from '../config/api'
 
 export default function TransactionsPage() {
-  const [transactions, setTransactions] = useState<Transaction[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [transactions, setTransactions] = useState<Transaction[]>([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     fetch(`${API_URL}/transactions/`)
-      .then(res => res.json())
-      .then(data => {
-        console.log('Fetched transactions:', data);
-        setTransactions(data);
+      .then((res) => res.json())
+      .then((data) => {
+        console.log('Fetched transactions:', data)
+        setTransactions(data)
       })
-      .finally(() => setLoading(false));
-  }, []);
+      .finally(() => setLoading(false))
+  }, [])
 
   return (
     <div style={{ padding: 24 }}>
@@ -32,7 +32,7 @@ export default function TransactionsPage() {
             </tr>
           </thead>
           <tbody>
-            {transactions.map(tx => (
+            {transactions.map((tx) => (
               <tr key={tx.id}>
                 <td>{tx.id}</td>
                 <td>{tx.date}</td>
@@ -44,5 +44,5 @@ export default function TransactionsPage() {
         </table>
       )}
     </div>
-  );
+  )
 }
