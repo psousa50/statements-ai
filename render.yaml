@@ -10,11 +10,13 @@ services:
       poetry install
     startCommand: |
       cd bank-statements-api
-      poetry run uvicorn src.main:app --host 0.0.0.0 --port 10000
+      poetry run uvicorn bank_statements_api.main:app --host 0.0.0.0 --port 10000
     envVars:
       - key: ENV
         sync: false
-      - key: DATABASE_URL
+      - key: STATEMENTS_DB_SYNC_URL
+        sync: false
+      - key: STATEMENTS_DB_ASYNC_URL
         sync: false
     autoDeploy: true
     healthCheckPath: /health
